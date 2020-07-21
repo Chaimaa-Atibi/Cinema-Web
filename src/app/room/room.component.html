@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-info">
+      <div class="panel-heading">Ajouter salle</div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSaveRoom(f.value)">
+          <div class="form-group">
+            <label for="name">Nom de salle: </label>
+            <input type="text" [(ngModel)]="roomName" name="name" id="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Nombre de places: </label>
+            <input type="text" ngModel name="countSeats" id="address" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Ville: </label>
+            <select (change)="onCityChange($event)" name="city" class="form-control">
+              <option *ngFor="let city of cities" [value]="city.id">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="name">Cinéma: </label>
+            <select (change)="onCinemaChange($event)" ngModel name="cinema" class="form-control">
+              <option *ngFor="let cinema of cinemas" [value]="cinema.id">
+                {{ cinema.name }}
+              </option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Enregistrer</button>
+        </form>
+      </div>
+      </div>
+      <hr>
+  </div>

@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="panel panel-info">
+      <div class="panel-heading">Ajouter Cinema</div>
+      <div class="panel-body">
+        <form #f="ngForm" (ngSubmit)="onSaveCinema(f.value)">
+          <div class="form-group">
+            <label for="name">Nom Cinéma</label>
+            <input type="text" [(ngModel)]="cinemaName" name="name" id="name" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Nombre de salles</label>
+            <input type="text" ngModel name="countRooms" id="countRooms" class="form-control">
+          </div>
+          <div class="form-group">
+            <label for="name">Ville</label>
+            <select name="city" ngModel class="form-control">
+              <option *ngFor="let city of cities" [ngValue]="city">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+          <button class="btn btn-primary" type="submit">Enregistrer</button>
+        </form>
+      </div>
+      </div>
+  </div>
+  <div class="col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">Rechercher</div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="name">Ville</label>
+            <select (change)="onSearchChange($event)" class="form-control">
+              <option [value]="city.id" *ngFor="let city of cities">
+                {{ city.name }}
+              </option>
+            </select>
+          </div>
+      </div>
+    </div>
+
+  <div *ngIf="cinemas">
+    <div class="panel panel-info">
+    <div class="panel-heading">Cinémas</div>
+    <div class="panel-body">
+  <div *ngFor="let cinema of cinemas">
+    <div class="col-xs-8">
+      <ul class="list-group">
+        <li class="list-group-item">{{ cinema.name }}</li>
+      </ul>
+    </div>
+    <div class="col-xs-4">
+      <button class="btn alert-warning" (click)="onUpdateCinema(cinema.id)">update</button> |
+      <button class="btn alert-danger" (click)="onDeleteCinema(cinema.id)">delete</button>
+    </div>
+  </div>
+    </div>
+    </div>
+    </div>
+    </div>
+</div>
+
